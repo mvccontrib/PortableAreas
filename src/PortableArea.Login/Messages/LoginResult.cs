@@ -1,6 +1,8 @@
+using MvcContrib.PortableAreas;
+
 namespace LoginPortableArea.Messages
 {
-	public class LoginResult
+	public class LoginResult:ICommandResult
 	{
 		public bool Success { get; set; }
 

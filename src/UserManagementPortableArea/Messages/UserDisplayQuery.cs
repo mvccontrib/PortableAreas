@@ -4,7 +4,7 @@ using UserManagementPortableArea.Models;
 
 namespace UserManagementPortableArea.Messages
 {
-	public class UserDisplayQuery : ICommandMessage<IEnumerable<UserDisplay>>
+	public class UserDisplayQuery : IQueryMessage<IEnumerable<UserDisplay>>
 	{
 		public IEnumerable<UserDisplay> Result { get; set; }
 	}

@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using MvcContrib;
 using MvcContrib.PortableAreas;
 using UserManagementPortableArea.Messages;
 
@@ -9,7 +10,7 @@ namespace UserManagementPortableArea.Controllers
 		public ActionResult Index()
 		{
 			var message = new UserDisplayQuery {};
-			PortableArea.Bus.Send(message);
+			Bus.Send(message);
 			return View(message.Result);
 		}
 	}
