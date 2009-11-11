@@ -10,5 +10,5 @@
 
     <h2>Login</h2>
     <%=Html.InputForm() %>
-    <a href="<%=Url.Action("ForgotPassword") %>">Forgot Password</a>
+    <span class="forgot-password-link"><a href="<%=Url.Action("ForgotPassword") %>">Forgot Password</a></span>
 </asp:Content>

@@ -98,7 +98,7 @@ namespace LoginPortableArea.Tests.Controllers
 			var input = new LoginInput();
 			ActionResult result = controller.Index(input);
 
-			Assert.Null(result);
+			Assert.IsAssignableFrom<LoginActionResult>(result);
 
 			handlerWasCalled.ShouldBe(true);
 		}
@@ -110,6 +110,14 @@ namespace LoginPortableArea.Tests.Controllers
 			controller.Index()
 				.AssertViewRendered()
 				.ForView("");
+		}
+
+		[Test]
+		public void logout_should_redirect_to_the_site_root()
+		{
+			var controller = new LoginController();
+			ActionResult result = controller.Logout();
+			Assert.IsAssignableFrom<LogoutActionResult>(result);
 		}
 
 

@@ -1,5 +1,5 @@
+using System;
 using System.Web.Mvc;
-using System.Web.Security;
 using LoginPortableArea.Messages;
 using LoginPortableArea.Models;
 using MvcContrib;
@@ -8,6 +8,12 @@ namespace LoginPortableArea.Controllers
 {
 	public class LoginController : Controller
 	{
+		[HttpGet]
+		public  ActionResult Logout()
+		{			
+			return new LogoutActionResult();
+		}
+
 		[HttpGet]
 		public ActionResult Index()
 		{
@@ -25,8 +31,7 @@ namespace LoginPortableArea.Controllers
 
 				if (message.Result.Success)
 				{
-					FormsAuthentication.RedirectFromLoginPage(loginInput.Username, false);
-					return null;
+					return new LoginActionResult(loginInput.Username);
 				}
 
 				ModelState.AddModelError("model", message.Result.Message);
