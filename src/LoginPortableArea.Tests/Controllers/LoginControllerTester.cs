@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Web.Mvc;
 using LoginPortableArea.Controllers;
 using LoginPortableArea.Messages;
 using LoginPortableArea.Models;
@@ -7,7 +8,6 @@ using MvcContrib;
 using MvcContrib.PortableAreas;
 using MvcContrib.TestHelper;
 using NUnit.Framework;
-using Rhino.Mocks;
 
 namespace LoginPortableArea.Tests.Controllers
 {
@@ -26,13 +26,13 @@ namespace LoginPortableArea.Tests.Controllers
 		[Test]
 		public void Forgot_password_should_render_the_default_view_with_the_input()
 		{
-			var handlerWasCalled = false;
+			bool handlerWasCalled = false;
 			Bus.Instance = new MockApplicationBus<ForgotPasswordInputMessage>(message =>
-				{
-					message.Result.Success = false;
-					handlerWasCalled = true;
-				}
-			);
+			                                                                  	{
+			                                                                  		message.Result.Success = false;
+			                                                                  		handlerWasCalled = true;
+			                                                                  	}
+				);
 
 			var controller = new LoginController();
 
@@ -42,13 +42,14 @@ namespace LoginPortableArea.Tests.Controllers
 				.ForView("")
 				.WithViewData<ForgotPasswordInput>().ShouldEqual(input, "");
 
-			Assert.That(handlerWasCalled,Is.True);
+			Assert.That(handlerWasCalled, Is.True);
 		}
+
 		[Test]
 		public void Forgot_password_should_render_the_sent_message_view()
 		{
 			Bus.Instance = new MockApplicationBus<ForgotPasswordInputMessage>(message =>
-				message.Result.Success = true);
+			                                                                  message.Result.Success = true);
 
 			var controller = new LoginController();
 
@@ -56,21 +57,19 @@ namespace LoginPortableArea.Tests.Controllers
 			controller.ForgotPassword(input)
 				.AssertViewRendered()
 				.ForView("forgotpasswordsent");
-
-
 		}
 
 
 		[Test]
 		public void Index_should_render_the_view_with_loginInput()
 		{
-			var handlerWasCalled = false;
+			bool handlerWasCalled = false;
 			Bus.Instance = new MockApplicationBus<LoginInputMessage>(message =>
-			{
-				message.Result.Success = false;
-				handlerWasCalled = true;
-			}
-			);
+			                                                         	{
+			                                                         		message.Result.Success = false;
+			                                                         		handlerWasCalled = true;
+			                                                         	}
+				);
 
 			var controller = new LoginController();
 
@@ -86,18 +85,18 @@ namespace LoginPortableArea.Tests.Controllers
 		[Test]
 		public void Index_should_call_forms_auth_login()
 		{
-			var handlerWasCalled = false;
+			bool handlerWasCalled = false;
 			Bus.Instance = new MockApplicationBus<LoginInputMessage>(message =>
-			{
-				message.Result.Success = true;
-				handlerWasCalled = true;
-			}
-			);
+			                                                         	{
+			                                                         		message.Result.Success = true;
+			                                                         		handlerWasCalled = true;
+			                                                         	}
+				);
 
 			var controller = new LoginController();
 
 			var input = new LoginInput();
-			var result = controller.Index(input);
+			ActionResult result = controller.Index(input);
 
 			Assert.Null(result);
 
@@ -114,7 +113,7 @@ namespace LoginPortableArea.Tests.Controllers
 		}
 
 
-		public class MockApplicationBus<T> : List<Type>, IApplicationBus where T: IEventMessage
+		public class MockApplicationBus<T> : List<Type>, IApplicationBus where T : IEventMessage
 		{
 			private readonly Action<T> _sendCallback;
 
@@ -125,7 +124,6 @@ namespace LoginPortableArea.Tests.Controllers
 
 			public void Send(IEventMessage eventMessage)
 			{
-				
 				_sendCallback((T) eventMessage);
 			}
 
@@ -141,8 +139,8 @@ namespace LoginPortableArea.Tests.Controllers
 			{
 			}
 		}
-
 	}
+
 	public class FakeMessageHandler : IMessageHandler
 	{
 		public bool Handled;

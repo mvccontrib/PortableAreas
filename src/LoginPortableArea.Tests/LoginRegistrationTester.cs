@@ -15,6 +15,7 @@ namespace LoginPortableArea.Tests
 			var reg = new LoginRegistration();
 			Assert.That(reg.AreaName, Is.EqualTo("Login"));
 		}
+
 		[Test]
 		public void Should_register_the_areas_routes()
 		{
@@ -25,7 +26,6 @@ namespace LoginPortableArea.Tests
 			reg.RegisterArea(context, MockRepository.GenerateMock<IApplicationBus>());
 
 			Assert.That(context.Routes.Count, Is.GreaterThan(0));
-
 		}
 	}
 }

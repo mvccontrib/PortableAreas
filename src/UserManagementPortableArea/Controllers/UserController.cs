@@ -1,6 +1,5 @@
 using System.Web.Mvc;
 using MvcContrib;
-using MvcContrib.PortableAreas;
 using UserManagementPortableArea.Messages;
 
 namespace UserManagementPortableArea.Controllers

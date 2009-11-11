@@ -3,7 +3,6 @@ using System.Web.Security;
 using LoginPortableArea.Messages;
 using LoginPortableArea.Models;
 using MvcContrib;
-using MvcContrib.PortableAreas;
 
 namespace LoginPortableArea.Controllers
 {
@@ -32,6 +31,7 @@ namespace LoginPortableArea.Controllers
 
 				ModelState.AddModelError("model", message.Result.Message);
 			}
+
 			return View(loginInput);
 		}
 
