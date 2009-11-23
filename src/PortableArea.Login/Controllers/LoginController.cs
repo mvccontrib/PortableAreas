@@ -17,7 +17,7 @@ namespace LoginPortableArea.Controllers
 		[HttpGet]
 		public ActionResult Index()
 		{
-			return View();
+			return View("index","LoginPortableArea");
 		}
 
 		[HttpPost]
@@ -37,13 +37,13 @@ namespace LoginPortableArea.Controllers
 				ModelState.AddModelError("model", message.Result.Message);
 			}
 
-			return View(loginInput);
+			return View("index", "LoginPortableArea", loginInput);
 		}
 
 		[HttpGet]
 		public ActionResult ForgotPassword()
 		{
-			return View();
+			return View("forgotpassword","loginportablearea");
 		}
 
 		[HttpPost]
@@ -57,12 +57,12 @@ namespace LoginPortableArea.Controllers
 
 				if (message.Result.Success)
 				{
-					return View("forgotpasswordsent", (object) message.Result.Message);
+					return View("forgotpasswordsent","loginportablearea", (object) message.Result.Message);
 				}
 
 				ModelState.AddModelError("model", message.Result.Message);
 			}
-			return View(forgotPasswordInput);
+			return View("forgotpassword","loginportablearea",forgotPasswordInput);
 		}
 	}
 }

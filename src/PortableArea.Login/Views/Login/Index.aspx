@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="LoginPortableArea.Master" Inherits="System.Web.Mvc.ViewPage<LoginInput>" %>
+<%@ Page Title="" Language="C#" Inherits="System.Web.Mvc.ViewPage<LoginInput>" %>
 <%@ Import Namespace="LoginPortableArea.Models"%>
 <%@ Import Namespace="MvcContrib.UI.InputBuilder.Views"%>
 

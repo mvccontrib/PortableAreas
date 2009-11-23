@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="LoginPortableArea.Master" Inherits="System.Web.Mvc.ViewPage<string>" %>
+<%@ Page Title="" Language="C#"  Inherits="System.Web.Mvc.ViewPage<string>" %>
 <%@ Import Namespace="MvcContrib.UI.InputBuilder.Views"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
