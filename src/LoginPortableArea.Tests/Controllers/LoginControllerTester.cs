@@ -20,7 +20,7 @@ namespace LoginPortableArea.Tests.Controllers
 			var controller = new LoginController();
 			controller.ForgotPassword()
 				.AssertViewRendered()
-				.ForView("");
+				.ForView("forgotpassword");
 		}
 
 		[Test]
@@ -39,7 +39,7 @@ namespace LoginPortableArea.Tests.Controllers
 			var input = new ForgotPasswordInput();
 			controller.ForgotPassword(input)
 				.AssertViewRendered()
-				.ForView("")
+				.ForView("forgotpassword")
 				.WithViewData<ForgotPasswordInput>().ShouldEqual(input, "");
 
 			Assert.That(handlerWasCalled, Is.True);
@@ -76,7 +76,7 @@ namespace LoginPortableArea.Tests.Controllers
 			var input = new LoginInput();
 			controller.Index(input)
 				.AssertViewRendered()
-				.ForView("")
+				.ForView("index")
 				.WithViewData<LoginInput>().ShouldBe(input);
 
 			handlerWasCalled.ShouldBe(true);
@@ -109,7 +109,7 @@ namespace LoginPortableArea.Tests.Controllers
 			var controller = new LoginController();
 			controller.Index()
 				.AssertViewRendered()
-				.ForView("");
+				.ForView("index");
 		}
 
 		[Test]
